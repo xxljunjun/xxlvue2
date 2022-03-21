@@ -1,12 +1,13 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');  //关联js和html
+// const HtmlWebpackPlugin = require('html-webpack-plugin');  //关联js和html
 module.exports = {
   mode: 'development',
   //Using source maps
   // devtool: 'inline-source-map',
   devServer: {
     static: './dist',
-    hot: true
+    hot: true,
+    port:8080,
   },
   //项目入口
   entry: {
@@ -19,9 +20,9 @@ module.exports = {
     clean: true,
   },
   //插件
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Output Management'
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     title: 'Output Management'
+  //   }),
+  // ],
 };

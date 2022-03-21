@@ -1,35 +1,25 @@
-/*
-    oberve(obj)==>看obj上有没有__ob__==>没有则new Obsever()将产生的实例添加到_-ob__==>遍历下一层属性，逐个defineReactive
-*/
-//递归执行顺序：observe.js==>Observer.js==>defineReactive.js
-import observe from './observe.js'
-import Watcher from './Watcher.js'
-var obj = {
-    a:{
-        m:{
-            n:5
-        }
-    },
-    b:10,
-    c:{
-        d:{
-            e:{
-                f:6666
-            }
-        }
-    },
-    g:[11,22,33]
-}
+import {
+    init,
+    classModule,
+    propsModule,
+    styleModule,
+    eventListenersModule,
+    h,
+  } from "snabbdom";
 
-observe(obj)
-//第一层变成响应式数据了
-// obj.g.splice(0,2)
-// console.log('已经是响应式数据了',obj)
-//坑!!!先监听后改变
-new Watcher(obj,'a.m.n',(val)=>{
-    console.log("2346346453",val)
-})
-obj.a.m.n = 11
+  //创建patch函数
+  const patch = init([classModule,propsModule,styleModule,eventListenersModule])
+
+  //创建虚拟节点
+  const myVnode1 =  h('a',{props:{href:'http://baidu.com'}},'小溪流')
+  const meVnode2 = h('div','我是一个盒子')
+  const meVnode3 = h('ul',[
+    h('li','西瓜'),
+    h('li','雪梨'),
+    h('li','苹果')
+  ])
 
 
-
+  //让虚拟节点上树
+  const container = document.getElementById('container')
+  patch(container,meVnode3)
