@@ -1,5 +1,12 @@
+### vnode,真实dom,h函数，diff算法,模板编译
+```js
+`真实dom通过${模板编译}变成vnode`
+`人为通过${h函数}生成vnode`
+`vnode可以通过${diff算法}调用${patch函数}生成真实dom`
+```
+
 ### 虚拟dom和diff算法
-+ diff算法：精细化比对,实现最小量更新
++ diff算法：精细化比对,实现最小量更新；key是节点的唯一标识符
 + 虚拟dom：用javaScript对象描述DOM的层次结构。DOM中的一切属性都在虚拟DOM中有对应的属性
 ```html
 <div class="box"></div>
@@ -56,6 +63,11 @@ h('a',{props:{href:'http://baidu.com'}},'小溪流')
 + 手写h函数
 
 ### 提出问题：diff算法原理
+```
+patch修补函数是关键函数，当然key很重要,key是这个节点的唯一标志符，告诉diff算法，更改前后它们是同一个DOM节点
+只有同一个虚拟节点，才能进行精细化比较
+只进行同层比较，不会进行跨层比较
+```
 
 ### 提出问题：虚拟DOM如何通过diff变成真正的DOM的
 
