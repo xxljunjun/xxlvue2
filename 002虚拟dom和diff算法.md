@@ -1,8 +1,9 @@
 ### vnode,真实dom,h函数，diff算法,模板编译
 ```js
 `真实dom通过${模板编译}变成vnode`
-`人为通过${h函数}生成vnode`
 `vnode可以通过${diff算法}调用${patch函数}生成真实dom`
+
+`人为通过${h函数}生成vnode`
 ```
 
 ### 虚拟dom和diff算法

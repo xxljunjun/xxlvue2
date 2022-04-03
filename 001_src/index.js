@@ -3,7 +3,7 @@
 */
 //递归执行顺序：observe.js==>Observer.js==>defineReactive.js
 import observe from './observe.js'
-import Watcher from './Watcher.js'
+// import Watcher from './Watcher.js'
 var obj = {
     a:{
         m:{
@@ -18,18 +18,20 @@ var obj = {
             }
         }
     },
-    g:[11,22,33]
+    g:[11,22,33],
+    h:[{id:1,name:'小溪流'}]
 }
 
 observe(obj)
 //第一层变成响应式数据了
-// obj.g.splice(0,2)
-// console.log('已经是响应式数据了',obj)
+obj.g.splice(0,2)
+console.log('已经是响应式数据了',obj)
+
 //坑!!!先监听后改变
-new Watcher(obj,'a.m.n',(val)=>{
-    console.log("2346346453",val)
-})
-obj.a.m.n = 11
+// new Watcher(obj,'a.m.n',(val)=>{
+//     console.log("2346346453",val)
+// })
+// obj.a.m.n = 11
 
 
 

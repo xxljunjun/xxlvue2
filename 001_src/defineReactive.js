@@ -1,13 +1,16 @@
 import observe from './observe.js'
 import Dep from './Dep.js'
 /*
-* @function 将对象的某一层变成相应式数据
-* @params data key value
+* @function 将对象的某一层变成响应式数据
+* @params data 对象
+* @params key 属性
+* @params val 属性值
 **/
 export default function defineReactive(data,key,val){
+
     const dep = new Dep()
-    // console.log("defineReactive工作了",data,key,val)
     if(arguments.length == 2){
+        //闭包
         val = data[key]
     }
 

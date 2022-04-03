@@ -4,13 +4,11 @@
         ==>以Array.prototype为原型通过Object.setPrototypeOf创建了一个arrayMthods对象，使得这个这个对象的__proto__指向了Array.prototype
         ==>步骤
             + 1创建一个以Array.prototype为原型的对象
-            + 2
 */
 import { def } from './utils'
 
 const arrayPrototype = Array.prototype
 export const arrayMethods = Object.create(arrayPrototype) //提供容器放改写的方法并暴露
-// console.log("111", arrayMethods)
 //要被改写的方法
 const methodsNeedChange = [
     'push', //都是插入
@@ -18,19 +16,20 @@ const methodsNeedChange = [
     'shift',
     'unshift', //都是插入
     'sort',
-    'splice',  //都是插入
+    'splice',  //插入的情况
     'reverse']
 methodsNeedChange.forEach(methodName => {
     //备份方法
     const original = arrayPrototype[methodName]
     //定义新的方法
     def(arrayMethods, methodName, function () {
-        //不能直接调用，this指向问题(谁调用函数this就指向谁)
-        //恢复原有的功能
+        //恢复原有的功能....不能直接调用，this指向问题(谁调用函数this就指向谁)
         const result = original.apply(this, arguments)
+
         //把类数组变成数组
         const args = [...arguments]
-        console.log('啦啦啦可以去更新模板')
+        console.log('啦啦啦可以去更新模板',
+        arguments)
 
         //把这个数组身上的__ob__取出来，__ob__已经被添加了，为什么已经添加了？因为数组肯定不是最高层，比如obj.g属性是数组，obj不能是数组了，第一次遍历obj这个对象的第一层的时候，已经给g属性添加了__ob__
         const ob = this.__ob__;
