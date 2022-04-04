@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div>
+    <ul id="list"></ul>
+    <!-- <li>
+        <div class="hd"></div>
+        <div class="bd">
+            <p>姓名：</p>
+            <p>年龄：</p>
+            <p>性别：</p>
+
+        </div>
+    </li> -->
+</div>
+
+<body>
+    <script>
+        /*
+            数组join法实现数据变成视图的方法==>本质就是字符串的方法
+             let str = [
+                "<li></li>",
+                "<div class='hd'></div></div>",
+                "<div class='bd'></div>",
+                "<p>姓名：</p></p>",
+                "<p>年龄：</p></p>",
+                "<p>性别：</p></p>",
+                ' </div>',
+                '</li>'
+            ].join()
+        */
+        let arr = [
+            {name:"小明",age:12,sex:"男"},
+            {name:"小兰",age:12,sex:"女"},
+            {name:"小强",age:12,sex:"男"}
+        ]
+       
+        //遍历arr数组,每遍历一项，就以字符串的视角将HTML字符串添加到list中
+        for(let i = 0;i<arr.length;i++){
+            list.innerHTML +=[
+            "<li>"+arr[i].name+"的基本信息</li>",
+            "<div class='hd'></div></div>",
+            "<div class='bd'></div>",
+            "<p>姓名："+arr[i].name+"</p></p>",
+            "<p>年龄："+arr[i].age+"</p></p>",
+            "<p>性别："+arr[i].sex+"</p></p>",
+            ' </div>',
+            '</li>'
+            ].join('')
+        }
+    </script>
+</body>
+
+</html>
