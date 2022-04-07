@@ -9,10 +9,14 @@
 </head>
 <body>
     <div id="box"></div>
+    <div id="box_1"></div>
+    <div id="box_2"></div>
+    <div id="box_3"></div>
+    <div id="box_4"></div>
     <!-- <script src="https://cdn.bootcdn.net/ajax/libs/mustache.js/4.0.1/mustache.js"></script> -->
 <script src="https://cdn.bootcdn.net/ajax/libs/mustache.js/4.0.1/mustache.min.js"></script>
 <!-- <script src="./mustache.js"></script> -->
-    <script>
+    <script type="text/javascript">
         /*
            实现数据变成视图的方法==>mastache库
         */
@@ -39,10 +43,88 @@
                 {{/arr}}
             </ul>
         `
+        //循环
         let str = Mustache.render(templateStr, data)
-        console.log(str)
         let box = document.getElementById("box")
         box.innerHTML = str
+
+        //不循环
+        let templateStr_1 = `<h1>我买了一个{{thing}},好{{mood}}呀</h1>`
+        let data_1 = {
+            thing:'华为手机',
+            mood:"开心"
+        }
+        let str_1 = Mustache.render(templateStr_1, data_1)
+        let box_1 = document.getElementById("box_1")
+        box_1.innerHTML = str_1
+
+        //循环简单数组
+        let templateStr_2 = `
+            <ul>
+                {{#arr}}
+                <li>{{.}}</li>
+                {{/arr}}
+            </ul>
+        `
+        let data_2 ={
+            arr:['苹果','雪梨','香蕉']
+        }
+        let str_2 = Mustache.render(templateStr_2, data_2)
+        let box_2 = document.getElementById("box_2")
+        box_2.innerHTML = str_2
+
+        //数组的嵌套
+        let templateStr_3 = `
+            <ul>
+                {{#arr}}
+                    <li>
+                        {{name}}的爱好是：
+                        <ol>
+                            {{#hobbies}}
+                            <li>{{.}}</li>
+                            {{/hobbies}}
+                        </ol>
+                    </li>
+                {{/arr}}
+            </ul>
+        `
+        let data_3 ={
+            arr:[
+                {id:1,name:"小溪流",age:12,hobbies:['羽毛球','篮球','足球']},
+                {id:1,name:"ljj",age:24,hobbies:['乒乓球','篮球','足球']},
+                {id:1,name:"xxl",age:56,hobbies:['羽毛球','乒乓球','足球']},
+                {id:1,name:"hlf",age:18,hobbies:['乒乓球','网球','足球']}
+            ]
+        }
+        let str_3 = Mustache.render(templateStr_3, data_3)
+        let box_3 = document.getElementById("box_3")
+        box_3.innerHTML = str_3
+
+        //布尔值
+        let templateStr_4 = `
+            <ul>
+                {{#m}}
+                <h3>你好</h3>
+                {{/m}}
+            </ul>
+        `
+        let data_4= {
+            m:true
+        }
+        let str_4 = Mustache.render(templateStr_4, data_4)
+        let box_4 = document.getElementById("box_4")
+        box_4.innerHTML = str_4
+        
+        //用模板解决无反引号
+        var mytemplate = document.getElementById('mytemplate')
+    </script>
+    <!-- 模板： -->
+    <script type="text/template" id="mytemplate">
+        <ul>
+            {{#arr}}
+            <li>{{.}}</li>
+            {{/arr}}
+        </ul>
     </script>
 </body>
 

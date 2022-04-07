@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            05_正则表达式简单数据填充
+        */
+        // let str = '我爱打篮球，我也爱打羽毛球'
+        //let str_1= str.replace('我','你')
+        //let str_1 = str.replace(/我/g, '你')
+        // console.log(str)
+        // console.log(str_1)
+        let data = {
+            thing: '华为手机',
+            mood: '开心'
+        }
+        let templateStr = `<h1>我买了一个{{thing}},好{{mood}}呀</h1>`
+
+        //最简单的模板引擎实现机理，利用正则表达式中的replace方法
+        //replace()的第二个参数可以是一个函数，这个函数提供捕获的东西的参数
+        //结合data对象，即可进行智能替换
+        function render(templateStr, data) {
+            return templateStr.replace(/\{\{(\w+)\}\}/g, function (a, b, c, d) {
+                console.log("第一个参数", a)
+                console.log("第二个参数", b)
+                console.log("第三个参数", c)
+                console.log("第四个参数", d)
+                return data[b]
+            })
+        }
+        let result = render(templateStr,data)
+        console.log(result)
+
+    </script>
+</body>
+
+</html>
