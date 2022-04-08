@@ -252,7 +252,7 @@
 
         if (openSection)
             throw new Error('Unclosed section "' + openSection[1] + '" at ' + scanner.pos);
-
+        console.log('获取到的',squashTokens(tokens))
         return nestTokens(squashTokens(tokens));
     }
 
