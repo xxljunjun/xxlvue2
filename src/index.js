@@ -1,19 +1,13 @@
 console.log("入口文件index")
-import mustache from './mustache.js'
-console.log("mustache对象",mustache)
-let templateStr = `
-<ul>
-    {{#arr}}
-    <li>
-        <div class="hd">{{name}}的基本信息</div>
-        <div class="bd">
-            <p>姓名：{{name}}</p>
-            <p>年龄：{{age}}</p>
-            <p>性别：{{sex}}</p>
-
-        </div>
-    </li>
-    {{/arr}}
-</ul>
-`
-mustache.render(templateStr,{})
+import Scan from './Scan.js'
+window.my_mustache = {
+    rend(templataStr,data){
+        console.log('需要转换的字符串模板',templataStr)
+        console.log('需要插入的对象',data)
+        let scan = new Scan()
+        console.log("实例化",scan)
+    }
+}
+let templataStr = `<h1>我买了一个{{thing}},好{{mood}}呀</h1>`
+let data = {}
+window.my_mustache.rend(templataStr,data)
